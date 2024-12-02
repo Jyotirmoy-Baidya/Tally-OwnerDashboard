@@ -1,14 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { GaugeCircle, AlertCircle } from 'lucide-react';
 import CreditScoreGraph from '../components/reports/CreditScoreGraph';
+import CreditScroreDial from '../components/reports/CreditScoreDial';
 
 const mockData = [
-    { date: '2024-01', score: 750 },
-    { date: '2024-02', score: 765 },
-    { date: '2024-03', score: 780 },
-    { date: '2024-04', score: 790 },
-    { date: '2024-05', score: 800 },
-    { date: '2024-06', score: 810 },
+    { date: '01-2024', score: 750 },
+    { date: '02-2024', score: 765 },
+    { date: '03-2024', score: 780 },
+    { date: '04-2024', score: 790 },
+    { date: '05-2024', score: 800 },
+    { date: '06-2024', score: 810 },
 ];
 
 const CibilPage = () => {
@@ -28,8 +29,7 @@ const CibilPage = () => {
                         <h2 className="text-lg font-semibold">Latest CIBIL Score</h2>
                         <GaugeCircle className="text-blue-600" size={24} />
                     </div>
-                    <div className="text-4xl font-bold text-blue-600">780</div>
-                    <p className="text-gray-600 mt-2">Last updated: March 2024</p>
+                    <CreditScroreDial score={790} />
                     <CreditScoreGraph data={mockData} />
                 </div>
 

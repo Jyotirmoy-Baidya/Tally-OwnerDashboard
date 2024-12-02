@@ -1,5 +1,6 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps } from 'recharts';
+import { extractMonthNumber, getMonthName } from '../../utils';
 
 interface CreditScoreGraphProps {
     data: Array<{
@@ -7,6 +8,22 @@ interface CreditScoreGraphProps {
         score: number;
     }>;
 }
+
+// Custom Tooltip Component
+const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+        const data = payload[0].payload as { date: string; score: number }; // Type assertion
+        const [month, year] = extractMonthNumber(data.date);
+        const monthName = getMonthName(month);
+        return (
+            <div className="bg-white border border-gray-300 rounded-md p-2.5 shadow-md">
+                <p className='font-medium'>{`Score: ${data.score}`}</p>
+                <p className='text-xs text-red-400'>Fetched At: {monthName} {year}</p>
+            </div>
+        );
+    }
+    return null;
+};
 
 const CreditScoreGraph: React.FC<CreditScoreGraphProps> = ({ data }) => {
     return (
@@ -16,11 +33,11 @@ const CreditScoreGraph: React.FC<CreditScoreGraphProps> = ({ data }) => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
                     <YAxis domain={[300, 900]} />
-                    <Tooltip />
+                    <Tooltip content={<CustomTooltip />} />
                     <Line type="monotone" dataKey="score" stroke="#3B82F6" strokeWidth={2} />
                 </LineChart>
             </ResponsiveContainer>
-        </div>
+        </div >
     );
 };
 
