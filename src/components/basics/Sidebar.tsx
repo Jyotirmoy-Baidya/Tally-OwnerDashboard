@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { CreditCard, FileCheck, Building2, Wallet, X } from 'lucide-react';
 import { useSidebar } from '../contexts/SideBarContext';

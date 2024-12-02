@@ -10,7 +10,7 @@ interface CreditScoreGraphProps {
 }
 
 // Custom Tooltip Component
-const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload, label }) => {
+const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload }) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload as { date: string; score: number }; // Type assertion
         const [month, year] = extractMonthNumber(data.date);
