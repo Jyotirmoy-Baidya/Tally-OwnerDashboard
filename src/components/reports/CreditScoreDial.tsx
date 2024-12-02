@@ -21,7 +21,7 @@ const CreditScroreDial: React.FC<{ score: number }> = ({ score }) => {
                 endAngle={0}
                 data={data}
             >
-                <RadialBar clockWise={true} dataKey="value" />
+                <RadialBar dataKey="value" />
             </RadialBarChart>
             <div className="absolute bottom-10 flex flex-col items-center">
                 <p className="text-xl mb-3 font-bold">{score}</p>
